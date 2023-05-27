@@ -1,0 +1,78 @@
+title: "Porch"
+path: "porch"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: vertical-stack
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      name: Porch
+
+    - type: custom:mini-graph-card
+      name: Temp
+      entities:
+        - entity: sensor.hue_outdoor_motion_sensor_temperature
+      show:
+        labels: true
+      color_thresholds:
+        - value: 15
+          color: blue
+        - value: 19
+          color: green
+        - value: 23
+          color: yellow
+        - value: 27
+          color: red
+      points_per_hour: 4
+
+    - type: 'custom:button-card'
+      template: card_graph
+      entity: sensor.greenbank_humidity
+      variables:
+        ulm_card_graph_color: "var(--google-blue)"
+        ulm_card_graph_name: Humidity
+        ulm_card_graph_entity: sensor.greenbank_humidity
+        ulm_card_graph_type: fill
+        ulm_card_graph_hours: 24
+
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.porch
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.porch2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true
+
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.porch3
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.porch4
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true

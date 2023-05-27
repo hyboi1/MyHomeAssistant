@@ -1,0 +1,47 @@
+title: "Hallway"
+path: "hallway"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Hallway
+
+  - type: custom:mini-graph-card
+    name: Temp
+    entities:
+      - entity: sensor.hs_temperature
+    show:
+      labels: true
+    color_thresholds:
+      - value: 15
+        color: blue
+      - value: 19
+        color: green
+      - value: 23
+        color: yellow
+      - value: 27
+        color: red
+    points_per_hour: 4
+
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.h1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.h2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true

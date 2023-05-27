@@ -1,0 +1,48 @@
+title: "Scenes"
+path: "scenes"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      name: Scenes
+
+    - type: "custom:button-card"
+      template: "card_welcome_scenes"
+      triggers_update: input_boolean.minimalist_scenes_dropdown
+      #entity: input_boolean.<Your_boolean>
+      variables:
+        ulm_card_welcome_scenes_collapse: input_boolean.minimalist_scenes_dropdown #OPTIONAl --> uncomment also entity or triggers_update
+        ulm_weather: "weather.springfield_lakes"
+        entity_1:
+          entity_id: "scene.good_afternoon"
+          icon: "mdi:weather-sunset" #OPTIONAL
+          name: "Afternoon" #OPTIONAL
+        entity_2:
+          entity_id: "scene.good_night"
+          icon: "mdi:moon-waxing-crescent" #OPTIONAL
+          name: "Night" #OPTIONAL
+        entity_3:
+          entity_id: "scene.movie_time"
+          icon: "mdi:video-vintage" #OPTIONAL
+          name: "Movie Time" #OPTIONAL
+        entity_4:
+          entity_id: "scene.good_morning"
+          icon: "mdi:weather-sunset-up" #OPTIONAL
+          name: "Morning" #OPTIONAL
+#      entity_5:
+#        entity_id: "<YOUR_ENTITY>"
+#        icon: "mdi:YOUR_ICON" #OPTIONAL
+#        name: "YOUR_NAME" #OPTIONAL
+#      entity_6:
+#        entity_id: "<YOUR_ENTITY>"
+#        icon: "mdi:YOUR_ICON" #OPTIONAL
+#        name: "YOUR_NAME" #OPTIONAL
+#      entity_7:
+#        entity_id: "<YOUR_ENTITY>"
+#        icon: "mdi:YOUR_ICON" #OPTIONAL
+#        name: "YOUR_NAME" #OPTIONALplease

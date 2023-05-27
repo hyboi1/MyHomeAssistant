@@ -1,0 +1,77 @@
+title: "Garage"
+path: "garage"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: The Garage
+
+  - type: custom:mini-graph-card
+    name: Temp
+    entities:
+      - entity: sensor.hue_motion_sensor_1_temperature
+    show:
+      labels: true
+    color_thresholds:
+      - value: 15
+        color: blue
+      - value: 19
+        color: green
+      - value: 23
+        color: yellow
+      - value: 27
+        color: red
+    points_per_hour: 4
+
+#first Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.garage1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.garage2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+#second
+  - type: "custom:button-card"
+    template: card_cover
+    entity: cover.garage_door_opener_msg100_main_channel
+    variables:
+      ulm_card_cover_enable_controls: true
+      ulm_card_cover_enable_slider: false
+      ulm_card_cover_garage: true
+  - type: "custom:button-card"
+    template: card_media_player
+    entity: media_player.garage_speaker
+    name: Garage Speaker
+    variables:
+      ulm_card_media_player_more_info: true
+      ulm_card_media_player_collapsible: true
+      ulm_card_media_player_enable_art: true
+      ulm_card_media_player_enable_controls: true 
+
+#third Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.hue_motion_sensor_1_battery
+        variables:
+            ulm_card_battery_charger_type_entity_id: sensor.hue_motion_sensor_1_battery
+            ulm_card_battery_battery_level_danger: 20
+            ulm_card_battery_battery_level_warning: 50
+            ulm_card_batteryname: Sensor Battery

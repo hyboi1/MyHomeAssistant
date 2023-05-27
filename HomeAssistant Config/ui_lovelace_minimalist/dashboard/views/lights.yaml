@@ -1,0 +1,24 @@
+title: "All Lights"
+path: "lights"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "vertical-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_title
+        name: All Lights
+
+      - type: "custom:auto-entities"
+        card:
+          type: entities
+        filter:
+          include:
+            - domain: light
+              #state: []
+          exclude: []
+        sort:
+          method: name

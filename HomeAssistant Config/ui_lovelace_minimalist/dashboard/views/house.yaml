@@ -1,0 +1,81 @@
+title: "House"
+path: "house"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: House Things
+
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.sa_consumption_power
+        color: red
+      - entity: sensor.sa_generation_power
+        color: blue
+    hours_to_show: 14
+    points_per_hour: 6
+    show:
+      state: false
+
+  - type: "custom:button-card"
+    template: card_cover
+    entity: cover.garage_door_opener_msg100_main_channel
+    variables:
+      ulm_card_cover_enable_controls: true
+      ulm_card_cover_enable_slider: false
+      ulm_card_cover_garage: true
+  - type: "custom:button-card"
+    template: card_media_player
+    entity: media_player.garage_speaker
+    name: Garage Speaker
+    variables:
+      ulm_card_media_player_more_info: true
+      ulm_card_media_player_collapsible: true
+      ulm_card_media_player_enable_art: true
+      ulm_card_media_player_enable_controls: true 
+
+  - type: "custom:button-card"
+    template: "card_vacuum"
+    entity: "vacuum.ms_potts"
+    variables:
+      ulm_card_vacuum_room: "script.clean_kitchen"
+      ulm_card_vacuum_room_icon: "mdi:sofa"
+      ulm_card_vacuum_camera: "camera.vacuum_map"
+      ulm_card_vacuum_camera_toggle: true
+
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.k1_coffeemachine_power
+        color: green
+    hours_to_show: 14
+    points_per_hour: 6
+    show:
+      state: false
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.6920ha_power
+        color: purple
+    hours_to_show: 14
+    points_per_hour: 6
+    show:
+      state: false
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.master_ac_power
+        color: pink
+    hours_to_show: 14
+    points_per_hour: 6
+    show:
+      state: false
+  - type: custom:mini-graph-card
+    entities:
+      - entity: sensor.tvunit_power
+        color: blue
+    hours_to_show: 14
+    points_per_hour: 6
+    show:
+      state: false

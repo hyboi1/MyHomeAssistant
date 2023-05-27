@@ -1,0 +1,25 @@
+- platform: template
+  sensors:
+    bedroom_temperature:
+      friendly_name: "Master Temperature"
+      unit_of_measurement: "°C"
+      value_template: "{{ state_attr('climate.master', 'current_temperature') }}"
+
+- platform: template
+  sensors:
+    bedroom_humidity:
+      friendly_name: "Master Humidity"
+      unit_of_measurement: "%"
+      value_template: "{{ state_attr('climate.master', 'current_humidity') }}"
+
+- platform: template
+  sensors:
+    mbps_received:
+      friendly_name: "Starlink Mbps Received"
+      value_template: "{{ ((float(states('sensor.starlink_downlink_throughput')) / 800000) | round(2)) }}"
+      unit_of_measurement: "Mbps"
+    mbps_sent:
+      friendly_name: "Starlink Mbps Sent"
+      value_template: "{{ ((float(states('sensor.starlink_uplink_throughput')) / 800000) | round(2)) }}"
+      unit_of_measurement: "Mbps"
+
