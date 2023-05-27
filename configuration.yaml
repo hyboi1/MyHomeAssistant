@@ -1,0 +1,166 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+homeassistant: 
+  name: Home
+  country: AU
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 75
+  unit_system: metric
+  time_zone: Australia/Brisbane
+  currency: AUD
+  internal_url: http://192.168.4.63:8123
+  packages: !include_dir_named packages/
+  
+#lovelace etc
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+default_config:
+
+config:
+
+#split config
+automation: !include automations.yaml
+group: !include_dir_merge_named groups
+input_boolean: !include_dir_merge_named input_boolean
+script: !include scripts.yaml
+scene: !include scenes.yaml
+sensor: !include_dir_merge_list sensors
+binary_sensor: !include_dir_merge_list binary_sensors
+
+
+cloud:
+
+discovery: 
+
+energy: 
+  
+frontend:
+  extra_module_url:
+    - /hacsfiles/lovelace-card-mod/card-mod.js
+  themes: !include_dir_merge_named themes/
+
+
+#smart things api.
+#66881143-bb6e-4cb9-877f-0822f2aaf628
+#monitoring the PI
+# Example configuration.yaml entry
+
+##### Solar Stuff
+#
+# - SOLAR ANALYTICS SETUP ------------------------------------------------------
+#
+# Solar Analytics - get the site details associated with the given user account login
+# Note: site_id value is required in URLs used in gets below - e.g. 36304
+# Updated every 24 hours
+
+input_number:
+  office_fan_percentage:
+    name: office Fan Percentage
+    min: 0
+    max: 100
+    step: 20
+  living_fan_percentage:
+    name: living Fan Percentage
+    min: 0
+    max: 100
+    step: 20
+  dining_fan_percentage:
+    name: dining Fan Percentage
+    min: 0
+    max: 100
+    step: 20
+  deck_fan_percentage:
+    name: deck Fan Percentage
+    min: 0
+    max: 100
+    step: 20
+
+fan:
+  - platform: template
+    fans:
+      fan_office:
+        friendly_name: "Office Fan"
+        unique_id: fan_office
+        value_template: "{{ states('input_boolean.office_fan_state') }}"
+        percentage_template: "{{ states('input_number.office_fan_percentage') }}"
+        turn_on:
+          service: script.fan_office_on
+        turn_off:
+          service: script.fan_office_off
+        set_percentage:
+          service: script.office_fan_set_speed
+          data:
+            percentage: "{{ percentage }}"
+        speed_count: 5
+      fan_living:
+        friendly_name: "living Fan"
+        unique_id: fan_living
+        value_template: "{{ states('input_boolean.living_fan_state') }}"
+        percentage_template: "{{ states('input_number.living_fan_percentage') }}"
+        turn_on:
+          service: script.fan_living_on
+        turn_off:
+          service: script.fan_living_off
+        set_percentage:
+          service: script.living_fan_set_speed
+          data:
+            percentage: "{{ percentage }}"
+        speed_count: 5
+      fan_dining:
+        friendly_name: "dining Fan"
+        unique_id: fan_dining
+        value_template: "{{ states('input_boolean.dining_fan_state') }}"
+        percentage_template: "{{ states('input_number.dining_fan_percentage') }}"
+        turn_on:
+          service: script.fan_dining_on
+        turn_off:
+          service: script.fan_dining_off
+        set_percentage:
+          service: script.dining_fan_set_speed
+          data:
+            percentage: "{{ percentage }}"
+        speed_count: 5
+      fan_deck:
+        friendly_name: "Deck Fan"
+        unique_id: fan_deck
+        value_template: "{{ states('input_boolean.deck_fan_state') }}"
+        percentage_template: "{{ states('input_number.deck_fan_percentage') }}"
+        turn_on:
+          service: script.fan_deck_on
+        turn_off:
+          service: script.fan_deck_off
+        set_percentage:
+          service: script.deck_fan_set_speed
+          data:
+            percentage: "{{ percentage }}"
+        speed_count: 5
+        
+light:
+  ###Fan lights
+  - platform: template
+    lights:
+      office_fan_light:
+        friendly_name: "Office Fan Light"
+        turn_on:
+          service: script.fan_office_light
+        turn_off:
+          service: script.fan_office_light
+      living_fan_light:
+        friendly_name: "living Fan Light"
+        turn_on:
+          service: script.fan_living_light
+        turn_off:
+          service: script.fan_living_light
+      dining_fan_light:
+        friendly_name: "dining Fan Light"
+        turn_on:
+          service: script.fan_dining_light
+        turn_off:
+          service: script.fan_dining_light
+
+
+
+

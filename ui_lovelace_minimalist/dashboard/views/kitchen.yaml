@@ -1,0 +1,85 @@
+title: "Kitchen"
+path: "kitchen"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Kitchen
+
+  - type: 'custom:button-card'
+    template: card_title
+    label: "Devices"
+
+#first Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: 'custom:button-card'
+        template: card_power_outlet
+        variables:
+          ulm_card_power_outlet_name: Coffee Machine
+          ulm_card_power_outlet_icon: mdi:coffee-maker
+        entity: switch.k1_coffeemachine_socket
+
+
+#Second Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.kitchen1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.kitchen2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+#Another Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.k1_lightstrips
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.k1_cupboards
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+#third Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.kitchen_ambiance
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.k1_main_pendant
+        name: HomePod
+        variables:
+          ulm_card_media_player_more_info: true
+          ulm_card_media_player_collapsible: true
+          ulm_card_media_player_enable_art: true
+          ulm_card_media_player_enable_controls: true 

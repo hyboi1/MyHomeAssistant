@@ -1,0 +1,325 @@
+title: "Lounge"
+path: "lounge"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Lounge Room
+
+  - type: horizontal-stack
+    cards:
+    - type: custom:mini-graph-card
+      name: Temp
+      entities:
+        - entity: sensor.hs_temperature
+      show:
+        labels: true
+      color_thresholds:
+        - value: 15
+          color: blue
+        - value: 19
+          color: green
+        - value: 23
+          color: yellow
+        - value: 27
+          color: red
+      points_per_hour: 4
+
+    - type: custom:button-card
+      template: card_graph
+      entity: sensor.broadlink_humidity
+      variables:
+        ulm_card_graph_color: "var(--google-blue)"
+        ulm_card_graph_name: Humidity
+        ulm_card_graph_entity: sensor.broadlink_humidity
+        ulm_card_graph_type: fill
+        ulm_card_graph_hours: 24
+
+#Devices
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Devices"
+
+    - type: "custom:button-card"
+      template: card_thermostat
+      entity: climate.sensibo_living
+      variables:
+        ulm_card_thermostat_enable_collapse: true
+        ulm_card_thermostat_enable_controls: true
+        ulm_card_thermostat_enable_hvac_modes: true
+        ulm_card_thermostat_enable_popup: true
+        ulm_card_thermostat_enable_background_color: true
+
+#first Stack
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      name: Lights
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.living_fan_light
+          variables:
+            #ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.bigspot
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_color_lamp_1
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+ 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.floor_lamp
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.floor_small
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_centris_ceiling_1
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+  #third Stack
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_centris_spot_1
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_centris_spot_2
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_centris_spot_3
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+  
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_centris_spot_4
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.powderroom_light
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.dining_fan_light
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.s1
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.powderroom_toilet
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+ 
+#fifth Stack
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Fans"
+    - type: "horizontal-stack"
+    #fans
+      cards:
+        - type: custom:mushroom-fan-card
+          entity: fan.fan_living
+          primary_info: name
+          secondary_info: state
+          icon_type: icon
+          show_percentage_control: false
+          show_oscillate_control: false
+          collapsible_controls: false
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+        - type: custom:mushroom-fan-card
+          entity: fan.fan_dining
+          primary_info: name
+          secondary_info: state
+          icon_type: icon
+          show_percentage_control: false
+          show_oscillate_control: false
+          collapsible_controls: false
+          tap_action:
+            action: toggle
+          hold_action:
+            action: more-info
+
+#sixth Stack
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Media"
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.living_room_display
+          name: Google Display
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true 
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.sony_tv
+          name: Sony TV
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true 
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Media"
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.living_room
+          name: Apple Tv 
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true 
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.kitchen_mini
+          name: HomePod Mini
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Media"
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.sonos_arc
+          name: Sonos Arc
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true 
+        - type: "custom:button-card"
+          template: card_media_player
+          entity: media_player.sonos_lamp
+          name: Ikea Lamp
+          variables:
+            ulm_card_media_player_more_info: true
+            ulm_card_media_player_collapsible: true
+            ulm_card_media_player_enable_art: true
+            ulm_card_media_player_enable_controls: true
+
+#sensors
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      label: "Sensors"
+    - type: "horizontal-stack"
+      cards:
+        - type: 'custom:button-card'
+          template: card_battery
+          entity: sensor.hue_dimmer_switch_1_battery
+          variables:
+              ulm_card_battery_charger_type_entity_id: sensor.hue_dimmer_switch_1_battery
+              ulm_card_battery_battery_level_danger: 20
+              ulm_card_battery_battery_level_warning: 50
+              ulm_card_battery_name: Hue Sensor
+        - type: 'custom:button-card'
+          template: card_battery
+          entity: sensor.kitchen_hue_switch_battery
+          variables:
+              ulm_card_battery_charger_type_entity_id: sensor.kitchen_hue_switch_battery
+              ulm_card_battery_battery_level_danger: 20
+              ulm_card_battery_battery_level_warning: 50
+              ulm_card_battery_name: Hue Sensor

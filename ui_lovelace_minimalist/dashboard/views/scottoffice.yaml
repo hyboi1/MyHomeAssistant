@@ -1,0 +1,113 @@
+title: "Scott's Office"
+path: "scottoffice"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: "vertical-stack"
+    cards:
+    - type: 'custom:button-card'
+      template: card_title
+      name: Scott's Office
+
+    - type: "horizontal-stack"
+      cards:
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.scott_codners_13_battery_level
+        variables:
+          ulm_card_battery_battery_state_entity_id:
+          ulm_card_battery_charging_animation: true
+          ulm_card_battery_battery_level_danger: 30
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: Scott's iPhone
+
+      - type: 'custom:button-card'
+        template: card_battery
+        entity: sensor.scotts_ipad_air_battery_level
+        variables:
+          ulm_card_battery_battery_state_entity_id:
+          ulm_card_battery_charging_animation: true
+          ulm_card_battery_battery_level_danger: 30
+          ulm_card_battery_battery_level_warning: 50
+          ulm_card_battery_name: Scott's iPad 
+
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_lightstrip_plus_2
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_play_1
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+
+    - type: "horizontal-stack"
+      cards:
+        - type: "custom:button-card"
+          template: card_light
+          entity: light.hue_play_2
+          variables:
+            ulm_card_light_enable_slider: true
+            ulm_card_light_enable_color: true
+            ulm_card_light_force_background_color: true
+            ulm_card_light_enable_collapse: true 
+
+    - type: "custom:button-card"
+      template: card_media_player
+      entity: media_player.scotts_mini
+      variables:
+        ulm_card_media_player_name : Scott's Apple Mini
+        ulm_card_media_player_enable_art: true
+        ulm_card_media_player_enable_controls: true
+        ulm_card_media_player_enable_volume_slider: true
+
+
+  - type: custom:mini-graph-card
+    name: Temp
+    entities:
+      - entity: sensor.hs_temperature
+    show:
+      labels: true
+    color_thresholds:
+      - value: 15
+        color: blue
+      - value: 19
+        color: green
+      - value: 23
+        color: yellow
+      - value: 27
+        color: red
+    points_per_hour: 4
+
+  - type: custom:mini-graph-card
+    name: Brightness
+    entities:
+      - entity: sensor.hs_illuminance
+        name: MS
+        color: yellow
+    points_per_hour: 2
+
+  - type: custom:mini-graph-card
+    name: Steps
+    entities:
+      - entity: sensor.scott_codners_13_steps
+        name: MS
+        color: purple
+    points_per_hour: 2
+
+

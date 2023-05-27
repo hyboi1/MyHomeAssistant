@@ -1,0 +1,72 @@
+title: "Deck"
+path: "deck"
+cards:
+  - type: "custom:button-card"
+    template: chip_back
+    variables:
+      ulm_chip_back_path: home
+
+  - type: 'custom:button-card'
+    template: card_title
+    name: Deck
+#fan
+  - type: custom:mushroom-fan-card
+    entity: fan.fan_deck
+    primary_info: name
+    secondary_info: state
+    icon_type: icon
+    show_percentage_control: false
+    show_oscillate_control: false
+    collapsible_controls: false
+    tap_action:
+      action: toggle
+    hold_action:
+      action: more-info
+#first Stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.deck1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.deck2
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true
+#second stack
+  - type: "horizontal-stack"
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.hue_go_1
+        variables:
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_color: true
+          ulm_card_light_force_background_color: true
+          ulm_card_light_enable_collapse: true 
+      - type: "custom:button-card"
+        template: card_media_player
+        entity: media_player.ikea_speaker_1
+        name: HomePod Mini
+        variables:
+          ulm_card_media_player_more_info: true
+          ulm_card_media_player_collapsible: true
+          ulm_card_media_player_enable_art: true
+          ulm_card_media_player_enable_controls: true 
+
+  - type: "custom:button-card"
+    template: card_light
+    entity: light.deck_strip
+    variables:
+      ulm_card_light_enable_slider: true
+      ulm_card_light_enable_color: true
+      ulm_card_light_force_background_color: true
+      ulm_card_light_enable_collapse: true

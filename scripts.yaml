@@ -1,0 +1,545 @@
+fan_office_light:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: light
+  mode: single
+  alias: fan_office_light
+  icon: mdi:ceiling-fan-light
+fan_office_on:
+  alias: fan_office_on
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: power on
+  - service: homeassistant.turn_on
+    target:
+      entity_id: input_boolean.office_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.office_fan_percentage
+    data:
+      value: 20
+  mode: single
+  icon: mdi:ceiling-fan
+fan_office_off:
+  alias: fan_office_off
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: power off
+  - service: homeassistant.turn_off
+    target:
+      entity_id: input_boolean.office_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.office_fan_percentage
+    data:
+      value: 0
+  mode: single
+  icon: mdi:ceiling-fan
+fan_office_40:
+  alias: fan_office_40%
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: 40%
+  mode: single
+  icon: mdi:ceiling-fan
+fan_office_60:
+  alias: fan_office_60%
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_office
+      command: 60%
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  mode: single
+  icon: mdi:ceiling-fan
+fan_office_80:
+  alias: fan_office_80%
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: 80%
+  mode: single
+  icon: mdi:ceiling-fan
+fan_office_100:
+  alias: fan_office_100%
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_office
+      command: 100%
+  mode: single
+  icon: mdi:ceiling-fan
+office_fan_set_speed:
+  alias: office_fan_set_speed
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.office_fan_percentage
+    data:
+      value: '{{ percentage }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_number.office_fan_percentage
+        state: '60.0'
+      sequence:
+      - service: script.fan_office_60
+    - conditions:
+      - condition: state
+        entity_id: input_number.office_fan_percentage
+        state: '100.0'
+      sequence:
+      - service: script.fan_office_100
+    - conditions:
+      - condition: state
+        entity_id: input_number.office_fan_percentage
+        state: '40.0'
+      sequence:
+      - service: script.fan_office_40
+    - conditions:
+      - condition: state
+        entity_id: input_number.office_fan_percentage
+        state: '80.0'
+      sequence:
+      - service: script.fan_office_80
+    - conditions:
+      - condition: state
+        entity_id: input_number.office_fan_percentage
+        state: '20.0'
+      sequence:
+      - service: script.fan_office_on
+    default: []
+  mode: single
+fan_living_on:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_on
+  - service: homeassistant.turn_on
+    target:
+      entity_id: input_boolean.living_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.living_fan_percentage
+    data:
+      value: 20
+  mode: single
+  icon: mdi:ceiling-fan
+  alias: fan_living_on
+fan_living_off:
+  alias: fan_living_off
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_off
+  - service: homeassistant.turn_off
+    target:
+      entity_id: input_boolean.living_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.living_fan_percentage
+    data:
+      value: 0
+  mode: single
+  icon: mdi:ceiling-fan
+fan_living_40:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_40
+  mode: single
+  alias: fan_living_40
+  icon: mdi:ceiling-fan
+fan_living_60:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_60
+  mode: single
+  alias: fan_living_60
+  icon: mdi:ceiling-fan
+fan_living_80:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_80
+  mode: single
+  alias: fan_living_80
+  icon: mdi:ceiling-fan
+fan_living_100:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_100
+  mode: single
+  alias: fan_living_100
+  icon: mdi:ceiling-fan
+fan_living_light:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_living
+      command: fan_living_light
+  mode: single
+  alias: fan_living_light
+  icon: mdi:ceiling-fan-light
+living_fan_set_speed:
+  alias: living_fan_set_speed
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.living_fan_percentage
+    data:
+      value: '{{ percentage }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_number.living_fan_percentage
+        state: '60.0'
+      sequence:
+      - service: script.fan_living_60
+    - conditions:
+      - condition: state
+        entity_id: input_number.living_fan_percentage
+        state: '100.0'
+      sequence:
+      - service: script.fan_living_100
+    - conditions:
+      - condition: state
+        entity_id: input_number.living_fan_percentage
+        state: '40.0'
+      sequence:
+      - service: script.fan_living_40
+    - conditions:
+      - condition: state
+        entity_id: input_number.living_fan_percentage
+        state: '80.0'
+      sequence:
+      - service: script.fan_living_80
+    - conditions:
+      - condition: state
+        entity_id: input_number.living_fan_percentage
+        state: '20.0'
+      sequence:
+      - service: script.fan_living_on
+    default: []
+  mode: single
+fan_dining_on:
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_dining
+      command: fan_dining_on
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  - service: homeassistant.turn_on
+    target:
+      entity_id: input_boolean.dining_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.dining_fan_percentage
+    data:
+      value: 20
+  mode: single
+  alias: fan_dining_on
+  icon: mdi:ceiling-fan
+fan_dining_off:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_off
+  - service: homeassistant.turn_off
+    target:
+      entity_id: input_boolean.dining_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.dining_fan_percentage
+    data:
+      value: 0
+  mode: single
+  alias: fan_dining_off
+  icon: mdi:ceiling-fan
+fan_dining_40:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_40
+  mode: single
+  alias: fan_dining_40
+  icon: mdi:ceiling-fan
+fan_dining_60:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_60
+  mode: single
+  alias: fan_dining_60
+  icon: mdi:ceiling-fan
+fan_dining_80:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_80
+  mode: single
+  alias: fan_dining_80
+  icon: mdi:ceiling-fan
+fan_dining_100:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_100
+  mode: single
+  alias: fan_dining_100
+  icon: mdi:ceiling-fan
+fan_dining_light:
+  sequence:
+  - service: remote.send_command
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+    data:
+      device: fan_dining
+      command: fan_dining_light
+  mode: single
+  alias: fan_dining_light
+  icon: mdi:ceiling-fan-light
+dining_fan_set_speed:
+  alias: dining_fan_set_speed
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.dining_fan_percentage
+    data:
+      value: '{{ percentage }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_number.dining_fan_percentage
+        state: '60.0'
+      sequence:
+      - service: script.fan_dining_60
+    - conditions:
+      - condition: state
+        entity_id: input_number.dining_fan_percentage
+        state: '100.0'
+      sequence:
+      - service: script.fan_dining_100
+    - conditions:
+      - condition: state
+        entity_id: input_number.dining_fan_percentage
+        state: '40.0'
+      sequence:
+      - service: script.fan_dining_40
+    - conditions:
+      - condition: state
+        entity_id: input_number.dining_fan_percentage
+        state: '80.0'
+      sequence:
+      - service: script.fan_dining_80
+    - conditions:
+      - condition: state
+        entity_id: input_number.dining_fan_percentage
+        state: '20.0'
+      sequence:
+      - service: script.fan_dining_on
+    default: []
+  mode: single
+deck_fan_set_speed:
+  alias: deck_fan_set_speed
+  sequence:
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.deck_fan_percentage
+    data:
+      value: '{{ percentage }}'
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 0
+      milliseconds: 500
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_number.deck_fan_percentage
+        state: '60.0'
+      sequence:
+      - service: script.fan_deck_60
+    - conditions:
+      - condition: state
+        entity_id: input_number.deck_fan_percentage
+        state: '100.0'
+      sequence:
+      - service: script.fan_deck_100
+    - conditions:
+      - condition: state
+        entity_id: input_number.deck_fan_percentage
+        state: '40.0'
+      sequence:
+      - service: script.fan_deck_40
+    - conditions:
+      - condition: state
+        entity_id: input_number.deck_fan_percentage
+        state: '80.0'
+      sequence:
+      - service: script.fan_deck_80
+    - conditions:
+      - condition: state
+        entity_id: input_number.deck_fan_percentage
+        state: '20.0'
+      sequence:
+      - service: script.fan_deck_on
+    default: []
+  mode: single
+fan_deck_on:
+  alias: fan_deck_on
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_on
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  - service: homeassistant.turn_on
+    target:
+      entity_id: input_boolean.deck_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.deck_fan_percentage
+    data:
+      value: 20
+  mode: single
+  icon: mdi:ceiling-fan
+fan_deck_40:
+  alias: fan_deck_40
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_40
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  mode: single
+  icon: mdi:ceiling-fan
+fan_deck_60:
+  alias: fan_deck_60
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_60
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  mode: single
+  icon: mdi:ceiling-fan
+fan_deck_80:
+  alias: fan_deck_80
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_80
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  mode: single
+  icon: mdi:ceiling-fan
+fan_deck_100:
+  alias: fan_deck_100
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_100
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  mode: single
+  icon: mdi:ceiling-fan
+fan_deck_off:
+  alias: fan_deck_off
+  sequence:
+  - service: remote.send_command
+    data:
+      device: fan_deck
+      command: fan_deck_off
+    target:
+      device_id: 2f9c31764d359e4c1f54c802f77d781e
+  - service: homeassistant.turn_off
+    target:
+      entity_id: input_boolean.deck_fan_state
+  - service: input_number.set_value
+    target:
+      entity_id: input_number.deck_fan_percentage
+    data:
+      value: 0
+  mode: single
+  icon: mdi:ceiling-fan

@@ -1,0 +1,752 @@
+- id: '1643667887779'
+  alias: Hallway lights Day
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 7f8d075bad13f8a9a252d6585f043fc5
+    entity_id: binary_sensor.hs_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: 07:00
+    before: '22:00'
+  action:
+  - type: turn_on
+    device_id: d8168609a534ff6cd231d3539e24d03f
+    entity_id: light.h1
+    domain: light
+    brightness_pct: 100
+  - type: turn_on
+    device_id: 9bfa5c1ed94ce35d29bc956c8aff1943
+    entity_id: light.h2
+    domain: light
+    brightness_pct: 100
+  - delay:
+      seconds: 120
+  - type: turn_off
+    device_id: d8168609a534ff6cd231d3539e24d03f
+    entity_id: light.h1
+    domain: light
+  - type: turn_off
+    device_id: 9bfa5c1ed94ce35d29bc956c8aff1943
+    entity_id: light.h2
+    domain: light
+  mode: restart
+- id: '1643678245657'
+  alias: Hallway Lights Night
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 7f8d075bad13f8a9a252d6585f043fc5
+    entity_id: binary_sensor.hs_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: '22:00'
+    before: 07:00
+  action:
+  - type: turn_on
+    device_id: d8168609a534ff6cd231d3539e24d03f
+    entity_id: light.h1
+    domain: light
+    brightness_pct: 12
+  - type: turn_on
+    device_id: 9bfa5c1ed94ce35d29bc956c8aff1943
+    entity_id: light.h2
+    domain: light
+    brightness_pct: 12
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: d8168609a534ff6cd231d3539e24d03f
+    entity_id: light.h1
+    domain: light
+  - type: turn_off
+    device_id: 9bfa5c1ed94ce35d29bc956c8aff1943
+    entity_id: light.h2
+    domain: light
+  mode: restart
+- id: '1643688428323'
+  alias: Foyer Day
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: ee61cf467558d84bdfb1f380c28bc66c
+    entity_id: binary_sensor.hue_motion_sensor_foyer_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: 07:00
+    before: '22:00'
+  action:
+  - type: turn_on
+    device_id: ea6bd3c2331c6b0c5f0983e7f19e9af5
+    entity_id: light.foyer1
+    domain: light
+    brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: ea6bd3c2331c6b0c5f0983e7f19e9af5
+    entity_id: light.foyer1
+    domain: light
+  mode: restart
+- id: '1643688991855'
+  alias: Foyer Night
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: ee61cf467558d84bdfb1f380c28bc66c
+    entity_id: binary_sensor.hue_motion_sensor_foyer_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: '22:00'
+    before: 07:00
+  action:
+  - type: turn_on
+    device_id: ea6bd3c2331c6b0c5f0983e7f19e9af5
+    entity_id: light.foyer1
+    domain: light
+    brightness_pct: 20
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: ea6bd3c2331c6b0c5f0983e7f19e9af5
+    entity_id: light.foyer1
+    domain: light
+  mode: restart
+- id: '1643700896004'
+  alias: Good Afternoon
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -00:45:00
+  condition:
+  - condition: or
+    conditions:
+    - condition: device
+      device_id: 999e7cf7094cbe4a34f709cad2869dd4
+      domain: device_tracker
+      entity_id: device_tracker.scott_codners_13
+      type: is_home
+    - condition: device
+      device_id: 611693f6a78e3c8d164fde05e66db3b3
+      domain: device_tracker
+      entity_id: device_tracker.daniel_ives_iphone
+      type: is_home
+  action:
+  - scene: scene.good_afternoon
+  - service: scene.turn_on
+    target:
+      entity_id: scene.deck_spellbound
+    metadata: {}
+  mode: single
+- id: '1643862495387'
+  alias: Garage lights Day
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d8ce3e9cd290bdf36c1d5d9a0fc629f9
+    entity_id: binary_sensor.hue_motion_sensor_1_motion
+    domain: binary_sensor
+  condition: []
+  action:
+  - scene: scene.garage_lights
+  - delay:
+      seconds: 120
+  - scene: scene.garage_lights_off
+  mode: restart
+- id: '1643863026409'
+  alias: Walk-in Bright
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d53e9c6242517b23e71b72526b690719
+    entity_id: binary_sensor.bedroom_sensor_wir_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: 07:00
+    before: '22:00'
+  action:
+  - scene: scene.walk_in_bright
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 02cfbac8f30f2dd8a68c0dd56359ebb9
+    entity_id: light.wir
+    domain: light
+  mode: restart
+- id: '1643863057344'
+  alias: Walk-in Dull
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: d53e9c6242517b23e71b72526b690719
+    entity_id: binary_sensor.bedroom_sensor_wir_motion
+    domain: binary_sensor
+  condition:
+  - condition: time
+    after: '22:00'
+    before: 07:00
+  action:
+  - scene: scene.walk_in_dull
+  - delay:
+      hours: 0
+      minutes: 2
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: 02cfbac8f30f2dd8a68c0dd56359ebb9
+    entity_id: light.wir
+    domain: light
+  mode: restart
+- id: '1643872405334'
+  alias: Fan On
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 2f9c31764d359e4c1f54c802f77d781e
+    entity_id: sensor.broadlink_temperature
+    domain: sensor
+    above: 27
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: fan.fan_dining
+      state: 'on'
+    - condition: device
+      device_id: d0136f5bc2d0330a8fbcfc97e4481429
+      domain: climate
+      entity_id: climate.sensibo_living
+      type: is_hvac_mode
+      hvac_mode: cool
+    - condition: state
+      entity_id: fan.fan_living
+      state: 'on'
+  action:
+  - scene: scene.fans_living_20
+  mode: single
+- id: '1644049969838'
+  alias: Fan Off
+  description: ''
+  trigger:
+  - type: temperature
+    platform: device
+    device_id: 2f9c31764d359e4c1f54c802f77d781e
+    entity_id: sensor.broadlink_temperature
+    domain: sensor
+    below: 24
+  condition: []
+  action:
+  - scene: scene.fans_living_off
+  mode: single
+- id: '1653637516651'
+  alias: Porch Evening On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: 0
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.porch_lights
+    metadata: {}
+  - delay:
+      hours: 4
+      minutes: 0
+      seconds: 0
+      milliseconds: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.porch_lights_dull
+    metadata: {}
+  - wait_for_trigger:
+    - platform: sun
+      event: sunrise
+      offset: 0
+  - service: scene.turn_on
+    target:
+      entity_id: scene.porch_lights_off
+    metadata: {}
+  mode: single
+- id: '1653882291949'
+  alias: Laundry Lights
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: 2e8f73d44f057f67d9b218598810bd69
+    entity_id: binary_sensor.ls_motion
+    domain: binary_sensor
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 2ab6ed53af7b4146b111823ad42240af
+    entity_id: light.l1
+    domain: light
+  - type: turn_on
+    device_id: b8cc157f7f0217c0bc50686f846dc390
+    entity_id: light.by1
+    domain: light
+    brightness_pct: 100
+  - delay:
+      hours: 0
+      minutes: 5
+      seconds: 0
+      milliseconds: 0
+  - type: turn_off
+    device_id: b8cc157f7f0217c0bc50686f846dc390
+    entity_id: light.by1
+    domain: light
+  - type: turn_off
+    device_id: 2ab6ed53af7b4146b111823ad42240af
+    entity_id: light.l1
+    domain: light
+  mode: restart
+- id: '1656562604685'
+  alias: Office Switch ON
+  description: ''
+  trigger:
+  - device_id: 81b8bef01353703454fb4dd512e6cbbc
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 1
+    unique_id: 23a6637c-7631-4e39-891c-d979757ab4f2
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_all_on
+    metadata: {}
+  mode: single
+- id: '1656563078211'
+  alias: Office All Off
+  description: ''
+  trigger:
+  - device_id: 81b8bef01353703454fb4dd512e6cbbc
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 4
+    unique_id: ae9af193-85c6-4da4-b16d-e95557d11a4b
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_off
+    metadata: {}
+  mode: single
+- id: '1656590853810'
+  alias: Off if no one home
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00:00'
+  condition:
+  - condition: device
+    device_id: 999e7cf7094cbe4a34f709cad2869dd4
+    domain: device_tracker
+    entity_id: device_tracker.scott_codners_13
+    type: is_not_home
+  - condition: and
+    conditions:
+    - condition: device
+      device_id: 611693f6a78e3c8d164fde05e66db3b3
+      domain: device_tracker
+      entity_id: device_tracker.daniel_ives_iphone
+      type: is_not_home
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_night
+    metadata: {}
+  mode: single
+- id: '1660607731900'
+  alias: CoffeeMachineLight
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_on
+    device_id: 41e15f2962126e9e1da39d73ef9155ea
+    entity_id: switch.k1_coffeemachine_socket
+    domain: switch
+  condition: []
+  action:
+  - type: turn_on
+    device_id: 4031bf7ac9176e5c8cc14dda86e0091a
+    entity_id: light.kitchen2
+    domain: light
+    brightness_pct: 95
+  mode: single
+- id: '1663970830078'
+  alias: Good Morning
+  description: ''
+  trigger:
+  - device_id: 7134812a76a3caaccbb65572e6ecb6f9
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 1
+    unique_id: d11d7d71-49e2-4269-9769-e8634c0846f6
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_morning
+    metadata: {}
+  mode: single
+- id: '1663971321652'
+  alias: 'Good Afternoon '
+  description: ''
+  trigger:
+  - device_id: 7134812a76a3caaccbb65572e6ecb6f9
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 2
+    unique_id: fe13715c-029c-4685-b0ef-40557a1f3760
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_afternoon
+    metadata: {}
+  - service: scene.turn_on
+    target:
+      entity_id: scene.deck_spellbound
+    metadata: {}
+  mode: single
+- id: '1663971354819'
+  alias: Good Night
+  description: ''
+  trigger:
+  - device_id: 7134812a76a3caaccbb65572e6ecb6f9
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 4
+    unique_id: c6307768-999b-40e4-8c63-126b393d7ddd
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.good_night
+    metadata: {}
+  mode: single
+- id: '1663975537464'
+  alias: Movie time
+  description: ''
+  trigger:
+  - device_id: 7134812a76a3caaccbb65572e6ecb6f9
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 3
+    unique_id: 24e47406-fffb-4b75-a45c-5c1dcf16c589
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.movie_time
+    metadata: {}
+  mode: single
+- id: '1664487062880'
+  alias: Coffee machine light off
+  description: ''
+  trigger:
+  - platform: device
+    type: turned_off
+    device_id: 41e15f2962126e9e1da39d73ef9155ea
+    entity_id: switch.k1_coffeemachine_socket
+    domain: switch
+  condition: []
+  action:
+  - type: turn_off
+    device_id: 4031bf7ac9176e5c8cc14dda86e0091a
+    entity_id: light.kitchen2
+    domain: light
+  mode: single
+- id: '1665864887512'
+  alias: Porch sensor night
+  description: ''
+  trigger:
+  - type: motion
+    platform: device
+    device_id: cdb00d42fbef08b2789eefdaf1aaa02a
+    entity_id: binary_sensor.hue_outdoor_motion_sensor_motion
+    domain: binary_sensor
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      after: '23:00:00'
+      before: 05:00:00
+      weekday:
+      - mon
+      - tue
+      - wed
+      - thu
+      - fri
+      - sat
+      - sun
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.porch_lights_dull
+    metadata: {}
+  mode: single
+- id: '1675721984421'
+  alias: Office_fan_button_on
+  description: ''
+  trigger:
+  - device_id: 81b8bef01353703454fb4dd512e6cbbc
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 2
+    unique_id: 2827110f-8b9e-4363-9f40-36d7480aad68
+  condition: []
+  action:
+  - service: script.fan_office_on
+    data: {}
+  mode: single
+- id: '1675722054510'
+  alias: office_fan_light_switch
+  description: ''
+  trigger:
+  - device_id: 81b8bef01353703454fb4dd512e6cbbc
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 3
+    unique_id: 09c79c3b-4600-4cc0-a8e9-9f898f7b8404
+  condition: []
+  action:
+  - service: script.fan_office_light
+    data: {}
+  mode: single
+- id: '1675730941315'
+  alias: Switch_office_fan_off
+  description: ''
+  trigger:
+  - device_id: 81b8bef01353703454fb4dd512e6cbbc
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 2
+    unique_id: 2827110f-8b9e-4363-9f40-36d7480aad68
+  condition: []
+  action:
+  - service: script.fan_office_off
+    data: {}
+  mode: single
+- id: '1675942500690'
+  alias: remote fans
+  description: ''
+  trigger:
+  - device_id: e469fa3712ff927212a2f290d8cad16b
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 1
+    unique_id: d9356fda-fddc-4de4-be12-d28cf5e478c8
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.fans_living_20
+    metadata: {}
+  mode: single
+- id: '1675942534169'
+  alias: remote fan off
+  description: ''
+  trigger:
+  - device_id: e469fa3712ff927212a2f290d8cad16b
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 1
+    unique_id: d9356fda-fddc-4de4-be12-d28cf5e478c8
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.fans_living_off
+    metadata: {}
+  mode: single
+- id: '1675942612164'
+  alias: remote aircon on
+  description: ''
+  trigger:
+  - device_id: e469fa3712ff927212a2f290d8cad16b
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 2
+    unique_id: 4f213a8e-a40c-4b79-a959-d29e5684d6aa
+  condition: []
+  action:
+  - device_id: d0136f5bc2d0330a8fbcfc97e4481429
+    domain: climate
+    entity_id: climate.sensibo_living
+    type: set_hvac_mode
+    hvac_mode: cool
+  mode: single
+- id: '1675942713061'
+  alias: Remote aircon off
+  description: ''
+  trigger:
+  - device_id: e469fa3712ff927212a2f290d8cad16b
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 2
+    unique_id: 4f213a8e-a40c-4b79-a959-d29e5684d6aa
+  condition: []
+  action:
+  - device_id: d0136f5bc2d0330a8fbcfc97e4481429
+    domain: climate
+    entity_id: climate.sensibo_living
+    type: set_hvac_mode
+    hvac_mode: 'off'
+  mode: single
+- id: '1675981523843'
+  alias: Switch office lights
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 1
+    unique_id: 98f61806-2ff0-4cca-a626-1b12ed267e62
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_all_on
+    metadata: {}
+  mode: single
+- id: '1675981569248'
+  alias: switch office light colours
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 1
+    unique_id: 98f61806-2ff0-4cca-a626-1b12ed267e62
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_crocus
+    metadata: {}
+  mode: single
+- id: '1675981648289'
+  alias: switch office fan light
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 2
+    unique_id: 731a63d8-e307-40bb-8df9-e1ce0a65af58
+  condition: []
+  action:
+  - service: script.fan_office_light
+    data: {}
+  mode: single
+- id: '1675981806557'
+  alias: switch office fan on
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 3
+    unique_id: 0f427ff5-675d-44fa-b077-828c24662528
+  condition: []
+  action:
+  - service: script.fan_office_on
+    data: {}
+  mode: single
+- id: '1675981859579'
+  alias: switch office fan off
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 3
+    unique_id: 0f427ff5-675d-44fa-b077-828c24662528
+  condition: []
+  action:
+  - service: script.fan_office_off
+    data: {}
+  mode: single
+- id: '1675981989259'
+  alias: switch office off
+  description: ''
+  trigger:
+  - device_id: 0db10732ab31dd5d0a58c2003679ce19
+    domain: hue
+    platform: device
+    type: repeat
+    subtype: 4
+    unique_id: 41519f56-d17d-4939-93f2-7aba1ac15d1a
+  condition: []
+  action:
+  - service: scene.turn_on
+    target:
+      entity_id: scene.office_off
+    metadata: {}
+  mode: single
+- id: '1676013105297'
+  alias: switch fan 80
+  description: ''
+  trigger:
+  - device_id: e469fa3712ff927212a2f290d8cad16b
+    domain: hue
+    platform: device
+    type: initial_press
+    subtype: 3
+    unique_id: 8d96d2c6-c6ea-434c-8ceb-5700c0e5fb81
+  condition: []
+  action:
+  - service: script.fan_dining_80
+    data: {}
+  - service: script.fan_living_80
+    data: {}
+  mode: single
