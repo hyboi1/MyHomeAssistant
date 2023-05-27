@@ -8,7 +8,7 @@ homeassistant:
   unit_system: metric
   time_zone: Australia/Brisbane
   currency: AUD
-  internal_url: http://192.168.4.63:8123
+  internal_url: !secret staticIP
   packages: !include_dir_named packages/
   
 #lovelace etc
@@ -41,20 +41,6 @@ frontend:
   extra_module_url:
     - /hacsfiles/lovelace-card-mod/card-mod.js
   themes: !include_dir_merge_named themes/
-
-
-#smart things api.
-#66881143-bb6e-4cb9-877f-0822f2aaf628
-#monitoring the PI
-# Example configuration.yaml entry
-
-##### Solar Stuff
-#
-# - SOLAR ANALYTICS SETUP ------------------------------------------------------
-#
-# Solar Analytics - get the site details associated with the given user account login
-# Note: site_id value is required in URLs used in gets below - e.g. 36304
-# Updated every 24 hours
 
 input_number:
   office_fan_percentage:
